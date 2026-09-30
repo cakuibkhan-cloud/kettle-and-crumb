@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PM9BRNDX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Kettle & Crumb</title>
+  <style>
+    :root{--bg:#F2F0EA;--panel:#FFF;--ink:#22201D;--ink-soft:#5A564F;--plum:#4A2545;--plum-deep:#33192E;--gold-deep:#C08F2E;--line:#DDD8CC}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',-apple-system,sans-serif;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+    h1{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--plum-deep);margin:0 0 .5em;font-size:2rem}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--panel)}.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;color:var(--plum-deep);text-decoration:none}nav a{color:var(--ink);text-decoration:none;font-size:.95rem}
+    main{flex:1;padding:60px 24px}.card{max-width:680px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:40px}
+    .lead{color:var(--ink-soft)}.items{border:1px solid var(--line);border-radius:2px;margin:20px 0}.empty{padding:24px;text-align:center;color:var(--ink-soft)}
+    .row{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:none}.row small{color:var(--ink-soft)}.row b{color:var(--gold-deep)}
+    .total{display:flex;justify-content:space-between;font-weight:600;font-size:1.1rem;margin:24px 0}
+    .btns{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:13px 26px;border-radius:2px;font-size:.95rem;cursor:pointer;text-decoration:none;font-family:inherit;border:1.5px solid var(--plum)}.btn-primary{background:var(--plum);color:#fff}.btn-primary:hover{background:var(--plum-deep)}.btn-primary[disabled]{opacity:.5;cursor:not-allowed}.btn-outline{background:transparent;color:var(--plum)}.btn-outline:hover{background:var(--plum);color:#fff}
+    .done{display:none;text-align:center}.done.show{display:block}
+    footer{background:var(--plum-deep);color:#D8CFD6;padding:40px 24px;font-size:.9rem}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PM9BRNDX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <nav><a class="logo" href="index.html">Kettle & Crumb</a><a href="index.html">Home</a></nav>
+  <main><div class="card">
+    <div id="checkout-view">
+      <h1>Checkout</h1>
+      <p class="lead">Review your practice order below. No payment is processed and no personal information is stored.</p>
+      <div class="items" id="items"></div>
+      <div class="total"><span>Total</span><span id="total">Rs. 0</span></div>
+      <div class="btns"><a class="btn btn-outline" href="index.html#menu">&larr; Continue shopping</a><button class="btn btn-primary" id="buy-now" onclick="buyNow()">Buy Now</button></div>
+    </div>
+    <div class="done" id="done-view"><h1>Thank you!</h1><p class="lead">Your practice order <b id="order-id"></b> has been placed.</p><a class="btn btn-primary" href="index.html">Back to home</a></div>
+  </div></main>
+  <footer>© 2026 Kettle & Crumb — GTM practice site</footer>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    var CART_KEY='kc_cart',cart=[];
+    try{cart=JSON.parse(localStorage.getItem(CART_KEY))||[]}catch(e){cart=[]}
+    function fmt(n){return 'Rs. '+n.toLocaleString('en-PK')}
+    function total(){return cart.reduce(function(t,i){return t+i.price*i.quantity},0)}
+    function render(){
+      var el=document.getElementById('items');
+      if(!cart.length){el.innerHTML='<div class="empty">Your cart is empty. Add an item from the menu first.</div>'}
+      else{el.innerHTML=cart.map(function(i){return '<div class="row"><div>'+i.item_name+'<br><small>'+fmt(i.price)+' × '+i.quantity+'</small></div><b>'+fmt(i.price*i.quantity)+'</b></div>'}).join('')}
+      document.getElementById('total').textContent=fmt(total());
+      document.getElementById('buy-now').disabled=!cart.length;
+    }
+    function buyNow(){
+      if(!cart.length)return;
+      var id='KC-'+Date.now();
+      dataLayer.push({ecommerce:null});
+      dataLayer.push({event:'purchase',ecommerce:{transaction_id:id,currency:'PKR',value:total(),items:cart.slice()}});
+      try{localStorage.removeItem(CART_KEY)}catch(e){}
+      cart=[];
+      document.getElementById('order-id').textContent=id;
+      document.getElementById('checkout-view').style.display='none';
+      document.getElementById('done-view').classList.add('show');
+    }
+    render();
+  </script>
+</body>
+</html>
