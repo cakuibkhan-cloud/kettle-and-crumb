@@ -4,264 +4,52 @@
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PM9BRNDX');</script>
   <!-- End Google Tag Manager -->
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kettle & Crumb — GTM Practice Site</title>
-
   <style>
-    :root{
-      --bg:#F2F0EA;--panel:#FFF;--ink:#22201D;--ink-soft:#5A564F;--plum:#4A2545;--plum-deep:#33192E;--gold:#E0A83E;--gold-deep:#C08F2E;--line:#DDD8CC
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',-apple-system,sans-serif;line-height:1.55}
-    h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0 0 .4em;color:var(--plum-deep)}
-    a{color:var(--plum)}
-    img{max-width:100%;display:block}
-    button,input{font:inherit}
-    .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-    nav{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:20}
-    .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;color:var(--plum-deep)}
-    .navlinks{display:flex;align-items:center;gap:20px}
-    .navlinks a{text-decoration:none;color:var(--ink);font-size:.95rem}
-    .navlinks a:hover{color:var(--plum)}
-    .navlinks .cart-toggle{margin-left:12px}
-    .hero{padding:80px 24px 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-    .hero>div{text-align:center}
-    .hero h1{font-size:2.6rem;line-height:1.15;max-width:520px;margin:0 auto .6em}
-    .hero p{margin:0 auto;max-width:540px;color:var(--ink-soft);font-size:1.05rem}
-    .hero-art{background:var(--gold);aspect-ratio:1/1;border-radius:4px;display:flex;align-items:center;justify-content:center;width:72%;margin:0 auto;overflow:hidden}
-    .hero-art img{width:100%;height:100%;object-fit:cover}
-    section{padding:64px 24px}
-    .section-head{max-width:560px;margin-bottom:36px}
-    .section-head p{color:var(--ink-soft)}
-    #menu{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-    .item-card{background:var(--bg);border:1px solid var(--line);padding:18px;border-radius:4px}
-    .menu-item-image{width:100%;height:200px;display:block;margin:0 0 16px;object-fit:cover;object-position:center;border-radius:2px;background:var(--bg)}
-    .item-body h3{font-size:1.5rem;margin-bottom:10px}
-    .item-price{font-size:1.05rem;margin-bottom:14px;color:var(--plum)}
-    .add-btn,.btn,.cart-toggle,.cart-close,.qty button{cursor:pointer}
-    .add-btn,.btn,.cart-toggle{padding:10px 14px;border:none;border-radius:2px;background:var(--plum);color:#fff;transition:all .2s ease}
-    .add-btn:hover,.btn:hover,.cart-toggle:hover{background:var(--plum-deep)}
-    .add-btn.added{background:var(--gold-deep)}
-    #about{max-width:680px;margin:0 auto}
-    #about .section-head{max-width:100%}
-    #about p{margin-bottom:1.1em;color:var(--ink-soft)}
-    #newsletter{background:var(--plum);color:#fff}
-    #newsletter h2{color:#fff}
-    #newsletter p{color:#f0e6eb}
-    .form-row{display:flex;gap:12px;flex-wrap:wrap;max-width:500px;margin-top:20px}
-    .form-row input{flex:1 1 220px;padding:12px 14px;border:1px solid rgba(255,255,255,.35);border-radius:2px;background:#fff;color:var(--ink)}
-    .form-row button{padding:12px 18px;border:none;border-radius:2px;background:#fff;color:var(--plum);font-weight:600}
-    .form-message{display:none;margin-top:12px;opacity:0.95}
-    #contact{background:var(--panel);border-top:1px solid var(--line)}
-    .contact-form{max-width:480px}
-    .contact-form label{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:6px}
-    .contact-form input,.contact-form textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);margin-bottom:14px}
-    .contact-form textarea{min-height:120px;resize:vertical}
-    footer{background:var(--plum-deep);color:#D8CFD6;padding:40px 24px}
-    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-    .social-links{display:flex;gap:12px;flex-wrap:wrap}
-    .social-links a{color:#D8CFD6;text-decoration:none}
-    .cart-toggle{margin-left:24px}
-    .cart-overlay{position:fixed;inset:0;background:rgba(34,32,29,.5);display:none;z-index:90}
-    .cart-overlay.open{display:block}
-    .cart-drawer{position:fixed;top:0;right:0;height:100%;width:380px;max-width:100%;background:var(--panel);z-index:100;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
-    .cart-drawer.open{transform:translateX(0)}
-    .cart-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
-    .cart-head h2{margin:0;font-size:1.3rem}
-    .cart-close{background:none;border:none;color:var(--ink);font-size:2rem;line-height:1;padding:0 6px}
-    .cart-body{flex:1;overflow-y:auto;padding:8px 20px}
-    .cart-empty{color:var(--ink-soft);text-align:center;margin-top:40px}
-    .cart-row{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-    .cart-row-name{font-weight:600}
-    .cart-row-price{color:var(--ink-soft);font-size:.85rem;margin-top:4px}
-    .cart-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-    .cart-line-total{font-weight:600}
-    .qty{display:inline-flex;align-items:center;gap:8px}
-    .qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--bg);border-radius:2px}
-    .qty button:hover{background:var(--panel)}
-    .cart-remove{background:none;border:none;color:var(--plum);padding:0;margin-top:8px;text-align:left}
-    .cart-foot{padding:18px 20px;border-top:1px solid var(--line)}
-    .cart-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:600;margin-bottom:14px}
-    .cart-foot .btn{width:100%}
-    @media(max-width:800px){
-      .hero{grid-template-columns:1fr}
-      .menu-grid{grid-template-columns:1fr}
-      .navlinks a{margin-left:14px;font-size:.85rem}
-      .menu-item-image{height:220px}
-    }
+    :root{--bg:#F2F0EA;--panel:#FFF;--ink:#22201D;--ink-soft:#5A564F;--plum:#4A2545;--plum-deep:#33192E;--gold:#E0A83E;--gold-deep:#C08F2E;--line:#DDD8CC}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',-apple-system,sans-serif;line-height:1.55}
+    h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0 0 .4em;color:var(--plum-deep)}a{color:var(--plum)}.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--panel)}.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;color:var(--plum-deep)}.navlinks{display:flex;align-items:center}.navlinks a{text-decoration:none;margin-left:20px;color:var(--ink)}.navlinks a:hover{color:var(--plum)}
+    .hero{padding:80px 24px 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}.hero>div{text-align:center}.hero h1{font-size:2.6rem;line-height:1.15;max-width:520px;margin:0 auto .6em}.hero p{max-width:520px;margin:0 auto;color:var(--ink-soft)}
+    .hero-art{background:var(--gold);aspect-ratio:1/1;border-radius:4px;display:flex;align-items:center;justify-content:center;width:70%;margin:0 auto;overflow:hidden}.hero-art img{width:100%;height:100%;object-fit:cover}
+    section{padding:64px 24px}.section-head{max-width:560px;margin-bottom:36px}.section-head p{color:var(--ink-soft)}#menu{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.item-card{background:var(--bg);border:1px solid var(--line);padding:18px;border-radius:4px}.menu-item-image{width:100%;height:200px;display:block;margin:0 0 16px;object-fit:contain;object-position:center;background:var(--bg)}
+    .add-btn{width:100%;padding:10px;background:var(--plum);color:#fff;border:none;border-radius:2px;cursor:pointer;font-size:.9rem}.add-btn:hover{background:var(--plum-deep)}.add-btn.added{background:var(--gold-deep)}
+    #about{max-width:680px;margin:0 auto}#about .section-head{max-width:100%}#about p{margin-bottom:1.1em;color:var(--ink-soft)}#newsletter{background:var(--plum);color:#fff}#newsletter h2{color:#fff}#newsletter p{color:#f4edf0}
+    #contact{background:var(--panel);border-top:1px solid var(--line)}.contact-form{max-width:480px}.contact-form label{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:6px}.contact-form input,.contact-form textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);margin-bottom:14px}.contact-form textarea{min-height:120px;resize:vertical}
+    footer{background:var(--plum-deep);color:#D8CFD6;padding:40px 24px}.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}.social-links a{color:#D8CFD6;text-decoration:none}
+    .cart-toggle{margin-left:24px;background:var(--plum);color:#fff;border:none;border-radius:2px;padding:8px 14px;font-size:.9rem;cursor:pointer;font-family:inherit}.cart-toggle:hover{background:var(--plum-deep)}
+    .cart-overlay{position:fixed;inset:0;background:rgba(34,32,29,.5);display:none;z-index:90}.cart-overlay.open{display:block}.cart-drawer{position:fixed;top:0;right:0;height:100%;width:380px;max-width:100%;background:var(--panel);z-index:100;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}.cart-drawer.open{transform:translateX(0)}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}.cart-head h2{margin:0;font-size:1.3rem}.cart-close{background:none;border:none;color:var(--ink);font-size:2rem;line-height:1;padding:0 6px}
+    .cart-body{flex:1;overflow-y:auto;padding:8px 20px}.cart-empty{color:var(--ink-soft);text-align:center;margin-top:40px}.cart-row{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-row-name{font-weight:600}.cart-row-price{color:var(--ink-soft);font-size:.85rem}.cart-row-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}.cart-line-total{font-weight:600}.qty{display:inline-flex;align-items:center;gap:8px}.qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--bg);border-radius:2px;cursor:pointer}.qty button:hover{background:#eae6de}.cart-remove{background:none;border:none;color:var(--plum);padding:0;margin-top:8px;text-align:left}.cart-foot{padding:18px 20px;border-top:1px solid var(--line)}.cart-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:600;margin-bottom:14px}.cart-foot .btn{width:100%}
+    @media(max-width:800px){.hero{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr}.navlinks a{margin-left:14px;font-size:.85rem}.menu-item-image{height:220px}}
   </style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PM9BRNDX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-
-  <nav>
-    <div class="logo">Kettle &amp; Crumb</div>
-    <div class="navlinks">
-      <a href="#menu">Menu</a>
-      <a href="#about">Our Story</a>
-      <a href="#newsletter">Newsletter</a>
-      <a href="#contact">Contact</a>
-      <button class="cart-toggle" type="button" aria-label="Open cart" aria-expanded="false">Cart <span id="cart-count">0</span></button>
+  <nav><div class="logo">Kettle & Crumb</div><div class="navlinks"><a href="#menu">Menu</a><a href="#about">Our Story</a><a href="#newsletter">Newsletter</a><a href="#contact">Contact</a><button class="cart-toggle" onclick="openCart()" aria-label="Open cart">Cart <span id="cart-count">0</span></button></div></nav>
+  <section class="hero"><div><h1>A neighborhood bakery, now practicing its first website.</h1><p>This is a practice site built for testing Google Tag Manager — every button, form, and section here is meant to fire clean, trackable dataLayer events.</p></div><div class="hero-art"><img src="images/bakery-hero.jpg" alt="Bakery hero image"></div></section>
+  <section id="menu"><div class="wrap"><div class="section-head"><h2>Today's Menu</h2><p>Each menu selection and add-to-cart action sends item-specific ecommerce data to the dataLayer for GTM and GA4.</p></div>
+    <div class="menu-grid">
+      <div class="item-card"><img src="images/double-roty.jpg" alt="Double Roty" class="menu-item-image"><div class="item-body"><h3>Double Roty</h3><div class="item-price">Rs. 100</div><button class="add-btn" data-item="double-roty" data-name="Double Roty" data-price="100">Add to cart</button></div></div>
+      <div class="item-card"><img src="images/sourdough-loaf.jpg" alt="Sourdough Loaf" class="menu-item-image"><div class="item-body"><h3>Sourdough Loaf</h3><div class="item-price">Rs. 480</div><button class="add-btn" data-item="sourdough-loaf" data-name="Sourdough Loaf" data-price="480">Add to cart</button></div></div>
+      <div class="item-card"><img src="images/cold-brew.jpg" alt="Cold Brew" class="menu-item-image"><div class="item-body"><h3>Cold Brew</h3><div class="item-price">Rs. 320</div><button class="add-btn" data-item="cold-brew" data-name="Cold Brew" data-price="320">Add to cart</button></div></div>
+      <div class="item-card"><img src="images/tandoori-chai.jpg" alt="Tandoori Chai" class="menu-item-image"><div class="item-body"><h3>Tandoori Chai</h3><div class="item-price">Rs. 150</div><button class="add-btn" data-item="tandoori-chai" data-name="Tandoori Chai" data-price="150">Add to cart</button></div></div>
+      <div class="item-card"><img src="images/pepsi.jpg" alt="Pepsi" class="menu-item-image"><div class="item-body"><h3>Pepsi</h3><div class="item-price">Rs. 150</div><button class="add-btn" data-item="pepsi" data-name="Pepsi" data-price="150">Add to cart</button></div></div>
+      <div class="item-card"><img src="images/crunchy-chicken-pasta.jpg" alt="Crunchy Chicken Pasta" class="menu-item-image"><div class="item-body"><h3>Crunchy Chicken Pasta</h3><div class="item-price">Rs. 450</div><button class="add-btn" data-item="crunchy-chicken-pasta" data-name="Crunchy Chicken Pasta" data-price="450">Add to cart</button></div></div>
     </div>
-  </nav>
-
-  <section class="hero">
-    <div>
-      <h1>A neighborhood bakery, now practicing its first website.</h1>
-      <p>This is a practice site built for testing Google Tag Manager — every button, form, and section here is meant to fire clean, trackable dataLayer events.</p>
-    </div>
-    <div class="hero-art">
-      <img src="images/hero.png" alt="Bakery display with breads and coffee" />
-    </div>
-  </section>
-
-  <section id="menu">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Today's Menu</h2>
-        <p>Each menu selection and add-to-cart action sends item-specific ecommerce data to the dataLayer for GTM and GA4.</p>
-      </div>
-
-      <div class="menu-grid">
-        <article class="item-card" data-item="double-roty" data-name="Double Roty" data-price="100">
-          <img src="images/double-roty.jpg" alt="Double Roty" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Double Roty</h3>
-            <div class="item-price">Rs. 100</div>
-            <button class="add-btn" type="button" data-item="double-roty" data-name="Double Roty" data-price="100">Add to cart</button>
-          </div>
-        </article>
-
-        <article class="item-card" data-item="sourdough-loaf" data-name="Sourdough Loaf" data-price="480">
-          <img src="images/sourdough-loaf.jpg" alt="Sourdough Loaf" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Sourdough Loaf</h3>
-            <div class="item-price">Rs. 480</div>
-            <button class="add-btn" type="button" data-item="sourdough-loaf" data-name="Sourdough Loaf" data-price="480">Add to cart</button>
-          </div>
-        </article>
-
-        <article class="item-card" data-item="cold-brew" data-name="Cold Brew" data-price="320">
-          <img src="images/cold-brew.jpg" alt="Cold Brew" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Cold Brew</h3>
-            <div class="item-price">Rs. 320</div>
-            <button class="add-btn" type="button" data-item="cold-brew" data-name="Cold Brew" data-price="320">Add to cart</button>
-          </div>
-        </article>
-
-        <article class="item-card" data-item="tandoori-chai" data-name="Tandoori Chai" data-price="150">
-          <img src="images/tandoori-chai.jpg" alt="Tandoori Chai" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Tandoori Chai</h3>
-            <div class="item-price">Rs. 150</div>
-            <button class="add-btn" type="button" data-item="tandoori-chai" data-name="Tandoori Chai" data-price="150">Add to cart</button>
-          </div>
-        </article>
-
-        <article class="item-card" data-item="pepsi" data-name="Pepsi" data-price="150">
-          <img src="images/pepsi.jpg" alt="Pepsi" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Pepsi</h3>
-            <div class="item-price">Rs. 150</div>
-            <button class="add-btn" type="button" data-item="pepsi" data-name="Pepsi" data-price="150">Add to cart</button>
-          </div>
-        </article>
-
-        <article class="item-card" data-item="crunchy-chicken-pasta" data-name="Crunchy Chicken Pasta" data-price="450">
-          <img src="images/crunchy-chicken-pasta.jpg" alt="Crunchy Chicken Pasta" class="menu-item-image" />
-          <div class="item-body">
-            <h3>Crunchy Chicken Pasta</h3>
-            <div class="item-price">Rs. 450</div>
-            <button class="add-btn" type="button" data-item="crunchy-chicken-pasta" data-name="Crunchy Chicken Pasta" data-price="450">Add to cart</button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="section-head">
-      <h2>Our Story</h2>
-    </div>
-    <p>Kettle &amp; Crumb doesn't exist — it's a stand-in bakery built purely so you have real content to scroll through while testing Google Tag Manager.</p>
-    <p>We use it to practice ecommerce events, form tracking, scroll behavior, and simple campaign measurement without risking a real storefront or customer data.</p>
-  </section>
-
-  <section id="newsletter">
-    <div class="wrap">
-      <h2>Get the weekly bake list</h2>
-      <p>Submitting this form fires a <strong>newsletter_signup</strong> event — no real email is sent anywhere.</p>
-
-      <form id="newsletter-form" class="form-row" novalidate>
-        <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Your email address" aria-label="Email address" required />
-        <button type="submit">Join the list</button>
-      </form>
-      <div id="newsletter-msg" class="form-message" aria-live="polite">Thanks! Your signup was tracked.</div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Contact Us</h2>
-        <p>This form fires a <strong>contact_form_submit</strong> event on submit — nothing is stored or emailed.</p>
-      </div>
-
-      <form id="contact-form" class="contact-form" novalidate>
-        <label for="contact-name">Name</label>
-        <input id="contact-name" name="name" type="text" required />
-
-        <label for="contact-email">Email</label>
-        <input id="contact-email" name="email" type="email" required />
-
-        <label for="contact-message">Message</label>
-        <textarea id="contact-message" name="message" required></textarea>
-
-        <button class="btn" type="submit">Send message</button>
-      </form>
-      <div id="contact-msg" class="form-message" aria-live="polite">Your message was tracked successfully.</div>
-    </div>
-  </section>
-
-  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
-
-  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true">
-    <div class="cart-head">
-      <h2>Your Cart</h2>
-      <button class="cart-close" type="button" aria-label="Close cart">&times;</button>
-    </div>
-
-    <div class="cart-body" id="cart-body"></div>
-
-    <div class="cart-foot">
-      <div class="cart-total">
-        <span>Total</span>
-        <span id="cart-total">Rs. 0</span>
-      </div>
-      <button class="btn" type="button" id="checkout-btn">Checkout</button>
-    </div>
-  </aside>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <div>© 2026 Kettle &amp; Crumb — GTM practice site</div>
-      <div class="social-links">
-        <a href="https://instagram.com" id="social-instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://facebook.com" id="social-facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-      </div>
-    </div>
-  </footer>
-
+  </div></section>
+  <section id="about"><div class="section-head"><h2>Our Story</h2></div><p>Kettle & Crumb doesn't exist — it's a stand-in bakery built purely so you have real content to scroll through while testing Google Tag Manager.</p><p>We use it to practice ecommerce events, form tracking, and basic analytics setup in a low-risk environment.</p></section>
+  <section id="newsletter"><div class="wrap"><h2>Get the weekly bake list</h2><p>Submitting this form fires a "newsletter_signup" event — no real email is sent anywhere.</p><form class="form-row" id="newsletter-form" onsubmit="handleNewsletter(event)"><input type="email" id="newsletter-email" placeholder="Your email address" aria-label="Email address"><button type="submit">Join the list</button></form><div id="newsletter-msg" style="display:none;margin-top:12px">Thanks! Your signup was tracked.</div></div></section>
+  <section id="contact"><div class="wrap"><div class="section-head"><h2>Contact Us</h2><p>This form fires a "contact_form_submit" event on submit — nothing is stored or emailed.</p></div><form class="contact-form" id="contact-form" onsubmit="handleContact(event)"><label for="contact-name">Name</label><input id="contact-name" type="text"><label for="contact-email">Email</label><input id="contact-email" type="email"><label for="contact-message">Message</label><textarea id="contact-message"></textarea><button class="btn" type="submit">Send message</button></form><div id="contact-msg" style="display:none;margin-top:12px">Your message was tracked successfully.</div></div></section>
+  <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart"><div class="cart-head"><h2>Your Cart</h2><button class="cart-close" onclick="closeCart()" aria-label="Close cart">&times;</button></div><div class="cart-body" id="cart-body"></div><div class="cart-foot"><div class="cart-total"><span>Total</span><span id="cart-total">Rs. 0</span></div><button class="btn" onclick="checkoutCart()">Checkout</button></div></aside>
+  <footer><div class="wrap footer-inner"><div>© 2026 Kettle & Crumb — GTM practice site</div><div class="social-links"><a href="https://instagram.com" id="social-instagram" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://facebook.com" id="social-facebook" target="_blank" rel="noopener noreferrer">Facebook</a></div></div></footer>
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -275,370 +63,140 @@
       window.dataLayer.push(eventData);
     }
 
-    function itemFromButton(btn) {
+    function itemFromButton(btn){
       return {
-        item_id: btn.getAttribute('data-item'),
-        item_name: btn.getAttribute('data-name'),
-        price: Number(parseFloat(btn.getAttribute('data-price')) || 0),
-        quantity: 1
+        item_id:btn.getAttribute('data-item'),
+        item_name:btn.getAttribute('data-name'),
+        price:parseFloat(btn.getAttribute('data-price')),
+        quantity:1
       };
     }
 
-    function itemToEcom(item) {
+    function itemToEcom(item){
       return {
-        item_id: item.item_id,
-        item_name: item.item_name,
-        price: Number(item.price || 0),
-        quantity: Number(item.quantity || 1),
-        currency: 'PKR',
-        item_category: 'Bakery'
+        item_id:item.item_id,
+        item_name:item.item_name,
+        price:Number(item.price || 0),
+        quantity:Number(item.quantity || 1),
+        currency:'PKR',
+        item_category:'Bakery'
       };
     }
 
-    var CART_KEY = 'kc_cart';
-    var cart = [];
-
-    function loadCart() {
-      try {
-        cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-      } catch (e) {
-        cart = [];
-      }
-    }
-
-    function saveCart() {
-      try {
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-      } catch (e) {
-        // Storage unavailable; ignoring is fine for this practice page.
-      }
-    }
-
-    function fmt(n) {
-      return 'Rs. ' + Number(n || 0).toLocaleString('en-PK');
-    }
-
-    function cartTotal() {
-      return cart.reduce(function (sum, item) {
-        return sum + Number(item.price || 0) * Number(item.quantity || 1);
-      }, 0);
-    }
-
-    function cartCount() {
-      return cart.reduce(function (sum, item) {
-        return sum + Number(item.quantity || 1);
-      }, 0);
-    }
-
-    function findItem(id) {
-      for (var i = 0; i < cart.length; i++) {
-        if (cart[i].item_id === id) return cart[i];
-      }
-      return null;
-    }
-
-    function pushCartEvent(eventName, items, value) {
-      pushGTM(eventName, {
-        ecommerce: {
-          currency: 'PKR',
-          value: Number(value || 0),
-          items: items.map(itemToEcom)
+    document.addEventListener('click',function(e){
+      var card=e.target.closest('.item-card');
+      if(!card || e.target.closest('.add-btn')) return;
+      var btn=card.querySelector('.add-btn');
+      if(!btn) return;
+      var item=itemFromButton(btn);
+      pushGTM('select_item',{
+        ecommerce:{
+          item_list_id:'main_menu',
+          item_list_name:"Today's Menu",
+          items:[itemToEcom(item)]
         },
-        cart_item_count: cartCount()
+        item_list_id:'main_menu',
+        item_list_name:"Today's Menu"
       });
+    });
+
+    function handleOrder(){
+      pushGTM('cta_click',{cta_id:'order_now',cta_text:'Order now'});
+      var names=cart.map(function(i){return i.item_name}).join(', ')||'none';
+      pushGTM('order_click',{item_name:names,cart_item_count:cartCount()});
+      setTimeout(function(){window.location.href='checkout.html'},300);
     }
 
-    function renderCart() {
-      var countEl = document.getElementById('cart-count');
-      var totalEl = document.getElementById('cart-total');
-      var body = document.getElementById('cart-body');
+    var CART_KEY='kc_cart',cart=[];
+    function loadCart(){try{cart=JSON.parse(localStorage.getItem(CART_KEY))||[]}catch(e){cart=[]}}
+    function saveCart(){try{localStorage.setItem(CART_KEY,JSON.stringify(cart))}catch(e){}}
+    function fmt(n){return 'Rs. '+n.toLocaleString('en-PK')}
+    function cartTotal(){return cart.reduce(function(t,i){return t+i.price*i.quantity},0)}
+    function cartCount(){return cart.reduce(function(t,i){return t+i.quantity},0)}
+    function findItem(id){for(var i=0;i<cart.length;i++){if(cart[i].item_id===id)return cart[i]}return null}
 
-      if (countEl) countEl.textContent = String(cartCount());
-      if (totalEl) totalEl.textContent = fmt(cartTotal());
+    function pushCartEvent(name,items,value){
+      pushGTM(name,{ecommerce:{currency:'PKR',value:Number(value||0),items:items.map(itemToEcom)},cart_item_count:cartCount()});
+    }
 
-      if (!body) return;
-
-      if (!cart.length) {
-        body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-        return;
-      }
-
-      body.innerHTML = cart.map(function (item) {
-        return '<div class="cart-row">' +
-          '<div>' +
-            '<div class="cart-row-name">' + item.item_name + '</div>' +
-            '<div class="cart-row-price">' + fmt(item.price) + ' each</div>' +
-            '<button class="cart-remove" type="button" data-remove-id="' + item.item_id + '">Remove</button>' +
-          '</div>' +
-          '<div class="cart-row-right">' +
-            '<div class="cart-line-total">' + fmt(item.price * item.quantity) + '</div>' +
-            '<div class="qty">' +
-              '<button type="button" data-change-id="' + item.item_id + '" data-delta="-1" aria-label="Decrease quantity">&minus;</button>' +
-              '<span>' + item.quantity + '</span>' +
-              '<button type="button" data-change-id="' + item.item_id + '" data-delta="1" aria-label="Increase quantity">+</button>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
+    function renderCart(){
+      document.getElementById('cart-count').textContent=cartCount();
+      document.getElementById('cart-total').textContent=fmt(cartTotal());
+      var body=document.getElementById('cart-body');
+      if(!cart.length){body.innerHTML='<p class="cart-empty">Your cart is empty.</p>';return}
+      body.innerHTML=cart.map(function(i){
+        return '<div class="cart-row"><div><div class="cart-row-name">'+i.item_name+'</div><div class="cart-row-price">'+fmt(i.price)+' each</div><button class="cart-remove" onclick="removeItem(\''+i.item_id+'\')">Remove</button></div><div class="cart-row-right"><div class="cart-line-total">'+fmt(i.price*i.quantity)+'</div><div class="qty"><button onclick="changeQty(\''+i.item_id+'\',-1)" aria-label="Decrease quantity">&minus;</button><span>'+i.quantity+'</span><button onclick="changeQty(\''+i.item_id+'\',1)" aria-label="Increase quantity">+</button></div></div></div>';
       }).join('');
     }
 
-    function addToCart(btn) {
-      var item = itemFromButton(btn);
-      var existing = findItem(item.item_id);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({
-          item_id: item.item_id,
-          item_name: item.item_name,
-          price: item.price,
-          quantity: 1
-        });
-      }
-
-      saveCart();
-      renderCart();
-      pushCartEvent('add_to_cart', [item], Number(item.price));
-
-      btn.textContent = 'Added ✓';
-      btn.classList.add('added');
-
-      setTimeout(function () {
-        btn.textContent = 'Add to cart';
-        btn.classList.remove('added');
-      }, 1500);
+    function addToCart(btn){
+      var item=itemFromButton(btn),ex=findItem(item.item_id);
+      if(ex){ex.quantity+=1}else{cart.push(item)}
+      saveCart();renderCart();
+      pushCartEvent('add_to_cart',[item],item.price);
+      btn.textContent='Added ✓';btn.classList.add('added');
+      setTimeout(function(){btn.textContent='Add to cart';btn.classList.remove('added')},1500);
     }
 
-    function changeQty(id, delta) {
-      var existing = findItem(id);
-      if (!existing) return;
-
-      var one = {
-        item_id: existing.item_id,
-        item_name: existing.item_name,
-        price: existing.price,
-        quantity: 1
-      };
-
-      if (delta > 0) {
-        existing.quantity += 1;
-        pushCartEvent('add_to_cart', [one], Number(existing.price));
-      } else {
-        existing.quantity -= 1;
-        pushCartEvent('remove_from_cart', [one], Number(existing.price));
-
-        if (existing.quantity <= 0) {
-          cart = cart.filter(function (item) {
-            return item.item_id !== id;
-          });
-        }
-      }
-
-      saveCart();
-      renderCart();
-    }
-
-    function removeItem(id) {
-      var existing = findItem(id);
-      if (!existing) return;
-
-      pushCartEvent('remove_from_cart', [existing], Number(existing.price) * Number(existing.quantity));
-      cart = cart.filter(function (item) {
-        return item.item_id !== id;
-      });
-
-      saveCart();
-      renderCart();
-    }
-
-    function openCart() {
-      renderCart();
-      pushCartEvent('view_cart', cart.slice(), cartTotal());
-
-      var drawer = document.getElementById('cart-drawer');
-      var overlay = document.getElementById('cart-overlay');
-      if (drawer) {
-        drawer.classList.add('open');
-        drawer.setAttribute('aria-hidden', 'false');
-      }
-      if (overlay) {
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden', 'false');
-      }
-      var toggle = document.querySelector('.cart-toggle');
-      if (toggle) toggle.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeCart() {
-      var drawer = document.getElementById('cart-drawer');
-      var overlay = document.getElementById('cart-overlay');
-      if (drawer) {
-        drawer.classList.remove('open');
-        drawer.setAttribute('aria-hidden', 'true');
-      }
-      if (overlay) {
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
-      }
-      var toggle = document.querySelector('.cart-toggle');
-      if (toggle) toggle.setAttribute('aria-expanded', 'false');
-    }
-
-    function handleOrder() {
-      var names = cart.map(function (item) {
-        return item.item_name;
-      }).join(', ') || 'none';
-
-      pushGTM('cta_click', {
-        cta_id: 'order_now',
-        cta_text: 'Order now'
-      });
-
-      pushGTM('order_click', {
-        item_name: names,
-        cart_item_count: cartCount()
-      });
-
-      setTimeout(function () {
-        window.location.href = 'checkout.html';
-      }, 300);
-    }
-
-    function checkoutCart() {
-      if (!cart.length) return;
-      pushCartEvent('begin_checkout', cart.slice(), cartTotal());
-      setTimeout(function () {
-        window.location.href = 'checkout.html';
-      }, 300);
-    }
-
-    function handleNewsletter(event) {
-      event.preventDefault();
-
-      var emailInput = document.getElementById('newsletter-email');
-      if (emailInput && !emailInput.checkValidity()) {
-        emailInput.reportValidity();
-        return;
-      }
-
-      pushGTM('newsletter_signup', {
-        form_id: 'newsletter-form',
-        form_name: 'newsletter',
-        signup_method: 'inline_form'
-      });
-
-      var msg = document.getElementById('newsletter-msg');
-      if (msg) {
-        msg.style.display = 'block';
-      }
-      event.target.reset();
-    }
-
-    function handleContact(event) {
-      event.preventDefault();
-
-      var form = event.target;
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      pushGTM('contact_form_submit', {
-        form_id: 'contact-form',
-        form_name: 'contact',
-        submit_type: 'contact'
-      });
-
-      var msg = document.getElementById('contact-msg');
-      if (msg) {
-        msg.style.display = 'block';
-      }
-      form.reset();
-    }
-
-    function itemCardSelected(card) {
-      var btn = card.querySelector('.add-btn');
-      if (!btn) return;
-      var item = itemFromButton(btn);
-
-      pushGTM('select_item', {
-        ecommerce: {
-          currency: 'PKR',
-          item_list_id: 'main_menu',
-          item_list_name: "Today's Menu",
-          items: [itemToEcom(item)]
-        },
-        item_list_id: 'main_menu',
-        item_list_name: "Today's Menu"
-      });
-    }
-
-    document.addEventListener('click', function (event) {
-      var addBtn = event.target.closest('.add-btn');
-      if (addBtn) {
-        addToCart(addBtn);
-        return;
-      }
-
-      var card = event.target.closest('.item-card');
-      if (card) {
-        itemCardSelected(card);
-        return;
-      }
-
-      var toggle = event.target.closest('.cart-toggle');
-      if (toggle) {
-        openCart();
-        return;
-      }
-
-      var closeBtn = event.target.closest('.cart-close');
-      if (closeBtn) {
-        closeCart();
-        return;
-      }
-
-      var overlay = event.target.closest('#cart-overlay');
-      if (overlay) {
-        closeCart();
-        return;
-      }
-
-      var removeBtn = event.target.closest('.cart-remove');
-      if (removeBtn) {
-        removeItem(removeBtn.getAttribute('data-remove-id'));
-        return;
-      }
-
-      var qtyBtn = event.target.closest('[data-change-id]');
-      if (qtyBtn) {
-        changeQty(qtyBtn.getAttribute('data-change-id'), Number(qtyBtn.getAttribute('data-delta')));
-        return;
-      }
-
-      if (event.target.closest('#checkout-btn')) {
-        checkoutCart();
-      }
+    document.addEventListener('click',function(e){
+      var btn=e.target.closest('.add-btn');
+      if(btn){addToCart(btn);}
     });
 
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        closeCart();
-      }
-    });
+    function changeQty(id,delta){
+      var ex=findItem(id);if(!ex)return;
+      var one={item_id:ex.item_id,item_name:ex.item_name,price:ex.price,quantity:1};
+      if(delta>0){ex.quantity+=1;pushCartEvent('add_to_cart',[one],ex.price)}
+      else{ex.quantity-=1;pushCartEvent('remove_from_cart',[one],ex.price);if(ex.quantity<=0)cart=cart.filter(function(i){return i.item_id!==id})}
+      saveCart();renderCart();
+    }
 
-    document.getElementById('newsletter-form').addEventListener('submit', handleNewsletter);
-    document.getElementById('contact-form').addEventListener('submit', handleContact);
-    document.getElementById('checkout-btn').addEventListener('click', checkoutCart);
+    function removeItem(id){
+      var ex=findItem(id);if(!ex)return;
+      pushCartEvent('remove_from_cart',[ex],ex.price*ex.quantity);
+      cart=cart.filter(function(i){return i.item_id!==id});
+      saveCart();renderCart();
+    }
 
-    window.openCart = openCart;
-    window.closeCart = closeCart;
-    window.checkoutCart = checkoutCart;
-    window.handleOrder = handleOrder;
+    function clearCart(){cart=[];saveCart();renderCart()}
 
-    loadCart();
-    renderCart();
+    function openCart(){
+      renderCart();
+      pushCartEvent('view_cart',cart.slice(),cartTotal());
+      document.getElementById('cart-drawer').classList.add('open');
+      document.getElementById('cart-overlay').classList.add('open');
+    }
+    function closeCart(){
+      document.getElementById('cart-drawer').classList.remove('open');
+      document.getElementById('cart-overlay').classList.remove('open');
+    }
+
+    function checkoutCart(){
+      if(!cart.length)return;
+      pushCartEvent('begin_checkout',cart.slice(),cartTotal());
+      setTimeout(function(){window.location.href='checkout.html'},300);
+    }
+
+    loadCart();renderCart();
+
+    function handleNewsletter(e){
+      e.preventDefault();
+      pushGTM('newsletter_signup',{
+        form_id:'newsletter-form',
+        form_name:'newsletter',
+        signup_method:'inline_form'
+      });
+      document.getElementById('newsletter-msg').style.display='block';
+    }
+    function handleContact(e){
+      e.preventDefault();
+      pushGTM('contact_form_submit',{
+        form_id:'contact-form',
+        form_name:'contact',
+        submit_type:'contact'
+      });
+      document.getElementById('contact-msg').style.display='block';
+    }
   </script>
 </body>
 </html>
