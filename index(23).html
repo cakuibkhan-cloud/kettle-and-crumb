@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PM9BRNDX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kettle & Crumb — a practice bakery site for testing Google Tag Manager and GA4 ecommerce tracking.">
+  <title>Kettle & Crumb — GTM Practice Site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#F2F0EA;--panel:#FFF;--ink:#22201D;--ink-soft:#5A564F;--plum:#4A2545;--plum-deep:#33192E;--gold:#E0A83E;--gold-deep:#C08F2E;--line:#DDD8CC}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',-apple-system,sans-serif;line-height:1.55}
+    h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0 0 .4em;color:var(--plum-deep)}
+    a{color:var(--plum)}
+    img{max-width:100%}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+    :focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+
+    /* Nav */
+    nav{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--panel)}
+    .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;color:var(--plum-deep)}
+    .navlinks{display:flex;align-items:center}
+    .navlinks a{margin-left:24px;text-decoration:none;color:var(--ink);font-size:.95rem}
+    .navlinks a:hover{color:var(--plum)}
+    .cart-toggle{margin-left:24px;background:var(--plum);color:#fff;border:none;border-radius:2px;padding:8px 14px;font-size:.9rem;cursor:pointer;font-family:inherit}
+    .cart-toggle:hover{background:var(--plum-deep)}
+    .cart-count{display:inline-block;min-width:20px;padding:0 6px;margin-left:4px;background:var(--gold);color:var(--plum-deep);border-radius:10px;font-weight:600;font-size:.8rem;text-align:center}
+
+    /* Buttons */
+    .btn{display:inline-block;padding:13px 26px;border-radius:2px;text-decoration:none;font-size:.95rem;cursor:pointer;border:none;font-family:inherit}
+    .btn-primary{background:var(--plum);color:#fff}
+    .btn-primary:hover{background:var(--plum-deep)}
+    .btn-outline{background:transparent;color:var(--plum);border:1.5px solid var(--plum)}
+    .btn-outline:hover{background:var(--plum);color:#fff}
+    .btn-row{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+    /* Hero */
+    .hero{padding:80px 24px 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+    .hero>div{text-align:center}
+    .hero h1{font-size:2.6rem;line-height:1.15;max-width:520px;margin-left:auto;margin-right:auto}
+    .hero p{color:var(--ink-soft);max-width:440px;font-size:1.05rem;margin:0 auto}
+    .hero-art{background:var(--gold);aspect-ratio:1/1;border-radius:4px;width:100%;max-width:450px;margin:0 auto;overflow:hidden}
+    .hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Sections */
+    section{padding:64px 24px}
+    .section-head{max-width:560px;margin-bottom:36px}
+    .section-head p{color:var(--ink-soft)}
+
+    /* Menu */
+    #menu{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+    .item-card{border:1px solid var(--line);border-radius:4px;padding:0 0 22px;background:var(--bg);overflow:hidden}
+    .item-body{padding:0 22px}
+    .item-card h3{font-size:1.1rem;margin-bottom:6px}
+    .item-price{color:var(--gold-deep);font-weight:600;margin:8px 0 14px}
+    .menu-item-image{width:100%;height:200px;display:block;margin:0 0 16px;object-fit:contain;object-position:center;background:var(--bg)}
+    .add-btn{width:100%;padding:10px;background:var(--plum);color:#fff;border:none;border-radius:2px;cursor:pointer;font-size:.9rem;font-family:inherit}
+    .add-btn:hover{background:var(--plum-deep)}
+    .add-btn.added{background:var(--gold-deep)}
+
+    /* About */
+    #about{max-width:680px;margin:0 auto}
+    #about .section-head{max-width:100%}
+    #about p{margin-bottom:1.1em;color:var(--ink-soft)}
+
+    /* Newsletter */
+    #newsletter{background:var(--plum);color:#fff}
+    #newsletter h2{color:#fff}
+    #newsletter p{color:#E4D9E2}
+    .form-row{display:flex;gap:12px;max-width:460px;margin-top:20px;flex-wrap:wrap}
+    .form-row input{flex:1;min-width:200px;padding:12px 14px;border:none;border-radius:2px;font-size:.95rem;font-family:inherit}
+    .form-row button{background:var(--gold);color:var(--plum-deep);border:none;padding:12px 22px;border-radius:2px;font-weight:600;cursor:pointer;font-family:inherit}
+    .form-row button:hover{background:var(--gold-deep)}
+    .form-msg{margin-top:14px;font-size:.9rem;color:var(--gold);display:none}
+
+    /* Contact */
+    #contact{background:var(--panel);border-top:1px solid var(--line)}
+    .contact-form{max-width:480px}
+    .contact-form label{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:6px}
+    .contact-form input,.contact-form textarea{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:2px;margin-bottom:16px;font-family:inherit;font-size:.95rem;background:var(--bg);color:var(--ink)}
+    .contact-form textarea{min-height:100px;resize:vertical}
+    .contact-msg{margin-top:6px;font-size:.9rem;color:var(--plum);display:none}
+
+    /* Footer */
+    footer{background:var(--plum-deep);color:#D8CFD6;padding:40px 24px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+    .social-links a{color:#D8CFD6;text-decoration:none;margin-left:18px;font-size:.9rem}
+    .social-links a:hover{color:var(--gold)}
+
+    /* Cart drawer */
+    .cart-overlay{position:fixed;inset:0;background:rgba(34,32,29,.5);display:none;z-index:90}
+    .cart-overlay.open{display:block}
+    .cart-drawer{position:fixed;top:0;right:0;height:100%;width:380px;max-width:100%;background:var(--panel);z-index:100;transform:translateX(100%);visibility:hidden;transition:transform .25s,visibility .25s;display:flex;flex-direction:column;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
+    .cart-drawer.open{transform:none;visibility:visible}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+    .cart-head h2{margin:0;font-size:1.3rem}
+    .cart-close{background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--ink)}
+    .cart-body{flex:1;overflow-y:auto;padding:8px 20px}
+    .cart-empty{color:var(--ink-soft);text-align:center;margin-top:40px}
+    .cart-row{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .cart-row-name{font-weight:600}
+    .cart-row-price{color:var(--ink-soft);font-size:.85rem}
+    .cart-row-right{text-align:right}
+    .cart-line-total{color:var(--gold-deep);font-weight:600;margin-bottom:6px}
+    .qty{display:inline-flex;align-items:center;gap:8px}
+    .qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--bg);border-radius:2px;cursor:pointer}
+    .qty button:hover{background:var(--line)}
+    .cart-remove{background:none;border:none;color:var(--plum);font-size:.8rem;cursor:pointer;text-decoration:underline;padding:0;margin-top:6px}
+    .cart-foot{padding:18px 20px;border-top:1px solid var(--line)}
+    .cart-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:600;margin-bottom:14px}
+    .cart-foot .btn{width:100%;text-align:center}
+    .cart-clear{display:block;margin:10px auto 0;background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:.85rem;text-decoration:underline}
+
+    @media(max-width:800px){
+      .hero{grid-template-columns:1fr;padding-top:48px}
+      .menu-grid{grid-template-columns:1fr}
+      .navlinks a{margin-left:14px;font-size:.85rem}
+      .cart-toggle{margin-left:14px}
+      .menu-item-image{height:220px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .cart-drawer{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PM9BRNDX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <nav>
+    <div class="logo">Kettle & Crumb</div>
+    <div class="navlinks">
+      <a href="#menu">Menu</a>
+      <a href="#about">Our Story</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#contact">Contact</a>
+      <button class="cart-toggle" id="cart-toggle" type="button" aria-label="Open cart">Cart <span class="cart-count" id="cart-count">0</span></button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>A neighborhood bakery, now practicing its first website.</h1>
+      <p>This is a practice site built for testing Google Tag Manager — every button, form, and section here is a real trigger you can wire up: clicks, form submits, scroll depth, and outbound links.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="cta-order-now" type="button">Order Now</button>
+        <a class="btn btn-outline" id="cta-view-menu" href="#menu">View Menu</a>
+        <a class="btn btn-outline" id="cta-download-pdf" href="menu.pdf" download>Download Menu PDF</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="images/hero.png" alt="Kettle & Crumb bakery display" width="450" height="450" fetchpriority="high"></div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Today's Menu</h2>
+        <p>Each menu selection and add-to-cart action sends item-specific ecommerce data to the dataLayer for GTM and GA4.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="item-card"><img src="images/double-roty.jpg" alt="Double Roty" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Double Roty</h3><div class="item-price">Rs. 100</div><button class="add-btn" type="button" data-item="double-roty" data-name="Double Roty" data-price="100">Add to cart</button></div></div>
+        <div class="item-card"><img src="images/sourdough-loaf.jpg" alt="Sourdough Loaf" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Sourdough Loaf</h3><div class="item-price">Rs. 480</div><button class="add-btn" type="button" data-item="sourdough-loaf" data-name="Sourdough Loaf" data-price="480">Add to cart</button></div></div>
+        <div class="item-card"><img src="images/cold-brew.jpg" alt="Cold Brew" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Cold Brew</h3><div class="item-price">Rs. 320</div><button class="add-btn" type="button" data-item="cold-brew" data-name="Cold Brew" data-price="320">Add to cart</button></div></div>
+        <div class="item-card"><img src="images/tandoori-chai.jpg" alt="Tandoori Chai" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Tandoori Chai</h3><div class="item-price">Rs. 150</div><button class="add-btn" type="button" data-item="tandoori-chai" data-name="Tandoori Chai" data-price="150">Add to cart</button></div></div>
+        <div class="item-card"><img src="images/pepsi.jpg" alt="Pepsi" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Pepsi</h3><div class="item-price">Rs. 150</div><button class="add-btn" type="button" data-item="pepsi" data-name="Pepsi" data-price="150">Add to cart</button></div></div>
+        <div class="item-card"><img src="images/crunchy-chicken-pasta.jpg" alt="Crunchy Chicken Pasta" class="menu-item-image" loading="lazy" decoding="async"><div class="item-body"><h3>Crunchy Chicken Pasta</h3><div class="item-price">Rs. 900</div><button class="add-btn" type="button" data-item="crunchy-chicken-pasta" data-name="Crunchy Chicken Pasta" data-price="900">Add to cart</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><h2>Our Story</h2></div>
+    <p>Kettle & Crumb doesn't exist — it's a stand-in bakery built purely so you have real content to scroll through while testing scroll-depth triggers in GTM.</p>
+    <p>Keep scrolling past this paragraph and GTM's built-in Scroll Depth trigger should fire once you cross each threshold, assuming you've turned it on in your workspace.</p>
+    <p>Once you're comfortable with clicks, forms, and scroll, try adding a Timer trigger or a Visibility trigger on this section to round out your practice.</p>
+  </section>
+
+  <section id="newsletter">
+    <div class="wrap">
+      <h2>Get the weekly bake list</h2>
+      <p>Submitting this form fires a "newsletter_signup" event — no real email is sent anywhere.</p>
+      <form class="form-row" id="newsletter-form">
+        <input type="email" id="newsletter-email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="form-msg" id="newsletter-msg" role="status">You're subscribed (practice only — nothing was actually sent).</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact Us</h2>
+        <p>This form fires a "contact_form_submit" event on submit — nothing is stored or emailed.</p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" autocomplete="name" required>
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" autocomplete="email" required>
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" required></textarea>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <div class="contact-msg" id="contact-msg" role="status">Message received (practice only).</div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 Kettle & Crumb — GTM practice site</div>
+      <div class="social-links">
+        <a href="https://instagram.com" id="social-instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://facebook.com" id="social-facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://wa.me/923152950207" id="social-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-head"><h2>Your Cart</h2><button class="cart-close" id="cart-close" type="button" aria-label="Close cart">&times;</button></div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Total</span><span id="cart-total">Rs. 0</span></div>
+      <button class="btn btn-primary" id="cart-checkout" type="button">Checkout</button>
+      <button class="cart-clear" id="cart-clear" type="button">Clear cart</button>
+    </div>
+  </aside>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var CART_KEY = 'kc_cart';
+      var CURRENCY = 'PKR';
+      var CATEGORY = 'Bakery';
+      var REDIRECT_DELAY = 300; // lets GTM send tags before the page changes
+      var cart = [];
+
+      window.dataLayer = window.dataLayer || [];
+
+      var $ = function (id) { return document.getElementById(id); };
+
+      /* ---------- dataLayer helpers ---------- */
+
+      // Pushes one event. Clears the previous ecommerce object first (GA4 best practice).
+      function pushGTM(eventName, payload) {
+        var data = { event: eventName };
+        if (payload) {
+          Object.keys(payload).forEach(function (k) { data[k] = payload[k]; });
+        }
+        if (data.ecommerce) window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push(data);
+      }
+
+      function toEcomItem(i) {
+        return {
+          item_id: i.item_id,
+          item_name: i.item_name,
+          price: Number(i.price) || 0,
+          quantity: Number(i.quantity) || 1,
+          item_category: CATEGORY
+        };
+      }
+
+      function pushCartEvent(name, items, value) {
+        pushGTM(name, {
+          ecommerce: { currency: CURRENCY, value: Number(value) || 0, items: items.map(toEcomItem) },
+          cart_item_count: cartCount()
+        });
+      }
+
+      /* ---------- cart state ---------- */
+
+      function loadCart() {
+        try {
+          var saved = JSON.parse(localStorage.getItem(CART_KEY));
+          cart = Array.isArray(saved) ? saved : [];
+        } catch (e) { cart = []; }
+      }
+      function saveCart() {
+        try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
+      }
+      function fmt(n) { return 'Rs. ' + n.toLocaleString('en-PK'); }
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+      function cartTotal() { return cart.reduce(function (t, i) { return t + i.price * i.quantity; }, 0); }
+      function cartCount() { return cart.reduce(function (t, i) { return t + i.quantity; }, 0); }
+      function findItem(id) {
+        for (var i = 0; i < cart.length; i++) { if (cart[i].item_id === id) return cart[i]; }
+        return null;
+      }
+      function itemFromButton(btn) {
+        return {
+          item_id: btn.getAttribute('data-item'),
+          item_name: btn.getAttribute('data-name'),
+          price: parseFloat(btn.getAttribute('data-price')),
+          quantity: 1
+        };
+      }
+      function goToCheckout() {
+        setTimeout(function () { window.location.href = 'checkout.html'; }, REDIRECT_DELAY);
+      }
+
+      /* ---------- cart rendering ---------- */
+
+      function renderCart() {
+        $('cart-count').textContent = cartCount();
+        $('cart-total').textContent = fmt(cartTotal());
+        var body = $('cart-body');
+        if (!cart.length) {
+          body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+          return;
+        }
+        body.innerHTML = cart.map(function (i) {
+          var id = esc(i.item_id);
+          return '<div class="cart-row">' +
+            '<div><div class="cart-row-name">' + esc(i.item_name) + '</div>' +
+            '<div class="cart-row-price">' + fmt(i.price) + ' each</div>' +
+            '<button class="cart-remove" type="button" data-action="remove" data-id="' + id + '">Remove</button></div>' +
+            '<div class="cart-row-right"><div class="cart-line-total">' + fmt(i.price * i.quantity) + '</div>' +
+            '<div class="qty">' +
+            '<button type="button" data-action="dec" data-id="' + id + '" aria-label="Decrease quantity">&minus;</button>' +
+            '<span>' + i.quantity + '</span>' +
+            '<button type="button" data-action="inc" data-id="' + id + '" aria-label="Increase quantity">+</button>' +
+            '</div></div></div>';
+        }).join('');
+      }
+
+      /* ---------- cart actions ---------- */
+
+      function addToCart(btn) {
+        var item = itemFromButton(btn), ex = findItem(item.item_id);
+        if (ex) { ex.quantity += 1; } else { cart.push(item); }
+        saveCart();
+        renderCart();
+        pushCartEvent('add_to_cart', [item], item.price);
+        btn.textContent = 'Added ✓';
+        btn.classList.add('added');
+        setTimeout(function () {
+          btn.textContent = 'Add to cart';
+          btn.classList.remove('added');
+        }, 1500);
+      }
+
+      function changeQty(id, delta) {
+        var ex = findItem(id);
+        if (!ex) return;
+        var one = { item_id: ex.item_id, item_name: ex.item_name, price: ex.price, quantity: 1 };
+        if (delta > 0) {
+          ex.quantity += 1;
+          pushCartEvent('add_to_cart', [one], ex.price);
+        } else {
+          ex.quantity -= 1;
+          pushCartEvent('remove_from_cart', [one], ex.price);
+          if (ex.quantity <= 0) cart = cart.filter(function (i) { return i.item_id !== id; });
+        }
+        saveCart();
+        renderCart();
+      }
+
+      function removeItem(id) {
+        var ex = findItem(id);
+        if (!ex) return;
+        pushCartEvent('remove_from_cart', [ex], ex.price * ex.quantity);
+        cart = cart.filter(function (i) { return i.item_id !== id; });
+        saveCart();
+        renderCart();
+      }
+
+      function clearCart() { cart = []; saveCart(); renderCart(); }
+
+      function setCartOpen(open) {
+        $('cart-drawer').classList.toggle('open', open);
+        $('cart-overlay').classList.toggle('open', open);
+        $('cart-drawer').setAttribute('aria-hidden', open ? 'false' : 'true');
+        (open ? $('cart-close') : $('cart-toggle')).focus();
+      }
+      function openCart() {
+        renderCart();
+        pushCartEvent('view_cart', cart.slice(), cartTotal());
+        setCartOpen(true);
+      }
+      function closeCart() { setCartOpen(false); }
+
+      function checkoutCart() {
+        if (!cart.length) return;
+        pushCartEvent('begin_checkout', cart.slice(), cartTotal());
+        goToCheckout();
+      }
+
+      /* ---------- other events ---------- */
+
+      function handleOrder() {
+        pushGTM('cta_click', { cta_id: 'order_now', cta_text: 'Order Now' });
+        // Custom event for the GTM trigger "order_click"; item_name = cart contents ("none" if empty).
+        var names = cart.map(function (i) { return i.item_name; }).join(', ') || 'none';
+        pushGTM('order_click', { item_name: names, cart_item_count: cartCount() });
+        goToCheckout();
+      }
+
+      function handleNewsletter(e) {
+        e.preventDefault();
+        pushGTM('newsletter_signup', { form_id: 'newsletter-form', form_name: 'newsletter', signup_method: 'inline_form' });
+        $('newsletter-msg').style.display = 'block';
+        e.target.reset();
+      }
+
+      function handleContact(e) {
+        e.preventDefault();
+        pushGTM('contact_form_submit', { form_id: 'contact-form', form_name: 'contact', submit_type: 'contact' });
+        $('contact-msg').style.display = 'block';
+        e.target.reset();
+      }
+
+      /* ---------- event wiring ---------- */
+
+      // One click listener for the menu: Add to cart, or select_item for a click anywhere else on a card.
+      document.addEventListener('click', function (e) {
+        var add = e.target.closest('.add-btn');
+        if (add) { addToCart(add); return; }
+
+        var card = e.target.closest('.item-card');
+        var btn = card && card.querySelector('.add-btn');
+        if (!btn) return;
+        var item = itemFromButton(btn);
+        pushGTM('select_item', {
+          ecommerce: { item_list_id: 'main_menu', item_list_name: "Today's Menu", items: [toEcomItem(item)] },
+          selected_item_id: item.item_id,
+          selected_item_name: item.item_name
+        });
+      });
+
+      $('cart-body').addEventListener('click', function (e) {
+        var b = e.target.closest('[data-action]');
+        if (!b) return;
+        var id = b.getAttribute('data-id'), action = b.getAttribute('data-action');
+        if (action === 'remove') removeItem(id);
+        else if (action === 'inc') changeQty(id, 1);
+        else if (action === 'dec') changeQty(id, -1);
+      });
+
+      $('cta-order-now').addEventListener('click', handleOrder);
+      $('cart-toggle').addEventListener('click', openCart);
+      $('cart-close').addEventListener('click', closeCart);
+      $('cart-overlay').addEventListener('click', closeCart);
+      $('cart-checkout').addEventListener('click', checkoutCart);
+      $('cart-clear').addEventListener('click', clearCart);
+      $('newsletter-form').addEventListener('submit', handleNewsletter);
+      $('contact-form').addEventListener('submit', handleContact);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && $('cart-drawer').classList.contains('open')) closeCart();
+      });
+
+      loadCart();
+      renderCart();
+    })();
+  </script>
+</body>
+</html>
